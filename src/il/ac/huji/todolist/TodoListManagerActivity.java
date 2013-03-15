@@ -39,4 +39,25 @@ public class TodoListManagerActivity extends Activity {
 	}
 
 
+	@Override
+	public boolean onOptionsItemSelected(MenuItem item) {
+		switch (item.getItemId()) {
+		case R.id.menuItemAdd:
+			EditText newTodoItem = (EditText) findViewById(R.id.edtNewItem);
+			if ((newTodoItem != null) && (newTodoItem.length() != 0)) {
+				adapter.add(new Item(newTodoItem.getText().toString()));
+				newTodoItem.setText("");
+			}
+			break;
+		case R.id.menuItemDelete:
+			Item itemToDelete = (Item) listItems.getSelectedItem();
+			if (itemToDelete != null)
+			{
+				adapter.remove(itemToDelete);
+			}
+			break;
+		}
+		return true;
+	}
+
 }
